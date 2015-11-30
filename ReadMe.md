@@ -86,6 +86,8 @@ AutoBuild = SetConfig Config
 module.exports = AutoBuild
 
 ```
+
+
 ### How Everything works 
 
 `SetConfig` accepts the `Config` Object and outputs a your customized build function. 
@@ -103,18 +105,34 @@ The custom build function accepts three boolean arguments - each specifing the t
 In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()` - *if* run without any arguments.
 
 
-hello 
-<!-- ```AutoBuild()```
+
+```livescript
+AutoBuild()
+```
+
 The command below will create watches - but **will not** do an initial compilation or delete any files after compilation. The situation I use this for is I want to make some small changes in a large source directory and and then move those files to a distribution directory.
-```AutoBuild(false,true,false)```
+
+```livescript
+AutoBuild(false,true,false)
+```
+
+
 
 Just compile all files. The situation I would use this combination would be when I want to recompile all my sources to distribution but am not doing any developement myself.
 
-```AutoBuild(true,false,false)```
+```livescript
+AutoBuild(true,false,false)
+```
+
+
 
 This is an interesting combination - you may think its not useful - but I use it a lot when I need clean up my source directory after experimenting around. 
 
-```AutoBuild(false,false,true)```
+```livescript
+AutoBuild(false,false,true)
+```
+
+
 
 As you can see the point is to create a **general** purpose build script, rather than being too specific about one thing. 
 
@@ -133,4 +151,4 @@ As you can see the point is to create a **general** purpose build script, rather
 
 I will not be maintaining this module unless people inform me they are using it. 
 
-If you find any error or problems please raise it as an issue.  -->
+If you find any error or problems please raise it as an issue.
