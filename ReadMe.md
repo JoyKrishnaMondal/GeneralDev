@@ -113,7 +113,7 @@ AutoBuild()
 The command below will create watches - but **will not** do an initial compilation or delete any files after compilation. The situation I use this for is I want to make some small changes in a large source directory and and then move those files to a distribution directory.
 
 ```livescript
-AutoBuild(false,true,false)
+AutoBuild(false,true,false) # Run without any arguments
 ```
 
 
@@ -121,7 +121,7 @@ AutoBuild(false,true,false)
 Just compile all files. The situation I would use this combination would be when I want to recompile all my sources to distribution but am not doing any developement myself.
 
 ```livescript
-AutoBuild(true,false,false)
+AutoBuild(true,false,false) # 1,0,0 - Only does initial compilation
 ```
 
 
@@ -129,7 +129,7 @@ AutoBuild(true,false,false)
 This is an interesting combination - you may think its not useful - but I use it a lot when I need clean up my source directory after experimenting around. 
 
 ```livescript
-AutoBuild(false,false,true)
+AutoBuild(false,false,true) # 0,0,1 - Clean Up directory 
 ```
 
 
@@ -140,11 +140,11 @@ As you can see the point is to create a **general** purpose build script, rather
 
 | Keys           | Type     | Description                                                                    |
 |----------------|----------|--------------------------------------------------------------------------------|
-| InitialExt     | String   | This is the expected extension of the source file - for `less` that would be "less". For `coffeescript` that would be "coffee"|
-| FinalExtention | String   | What the extension of the the final file should be - css,js,etc               |
-| DirToLook      | String   | Specify the Directory where the source Files are located in                   |
-| DirToSave      | String   | Specify the Directory where the compiled Files need to be saved in            |
-| Compile        | Function | The first argument of this function is the filename of the source file. The fuction will be called whenever one of the files being watched is changed and the name of the file would be passed on as the first argument. |
+| `InitialExt`     | String   | This is the expected extension of the source file - for `less` that would be "less". For `coffeescript` that would be "coffee"|
+| `FinalExtention` | String   | What the extension of the the final file should be - css,js,etc               |
+| `DirToLook`      | String   | Specify the Directory where the source Files are located in                   |
+| `DirToSave`      | String   | Specify the Directory where the compiled Files need to be saved in            |
+| `Compile`        | Function | The first argument of this function is the filename of the source file. The fuction will be called whenever one of the files being watched is changed and the name of the file would be passed on as the first argument. |
 
 
 ### Note
