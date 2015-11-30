@@ -5,11 +5,7 @@
 | zebra stripes | are neat      |    $1 |
 
 
-|Argument Position| Type |Default | Task | 
-|----------------|-------------------|-------------------|----|
-|1| Boolean | True  | Specifies if all the source files get an intial compilation |
-|2| Boolean | True  | If you would want to setup an watch and compile for each of the files |
-|3| Boolean | False | If you want to do an cleanup when the buildscript exits |
+
 #### GeneralDev - tiny module to handle some general devop tasks
 
 
@@ -99,6 +95,12 @@ module.exports = AutoBuild
 `SetConfig` accepts the `Config` Object and outputs a your customized build function. 
 
 The custom build function accepts three boolean arguments - each specifing the three important task mentioned above
+
+|Argument| Type |Default | Task | 
+|----------------|-------------------|-------------------|----|
+|1st| Boolean | True  | Specifies if all the source files get an intial compilation |
+|2nd| Boolean | True  | If you would want to setup an watch and compile for each of the files |
+|3rd| Boolean | False | If you want to do an cleanup when the buildscript exits |
 
 
 
