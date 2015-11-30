@@ -4,6 +4,12 @@
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
 
+
+|Argument Position| Type |Default | Task | 
+|----------------|-------------------|-------------------|----|
+|1| Boolean | True  | Specifies if all the source files get an intial compilation |
+|2| Boolean | True  | If you would want to setup an watch and compile for each of the files |
+|3| Boolean | False | If you want to do an cleanup when the buildscript exits |
 #### GeneralDev - tiny module to handle some general devop tasks
 
 
@@ -94,11 +100,7 @@ module.exports = AutoBuild
 
 The custom build function accepts three boolean arguments - each specifing the three important task mentioned above
 
-|Argument Position| Type |Default | Task | 
-| ---|---|---|
-|1| Boolean | True  | Specifies if all the source files get an intial compilation |
-|2| Boolean | True  | If you would want to setup an watch and compile for each of the files |
-|3| Boolean | False | If you want to do an cleanup when the buildscript exits |
+
 
 In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()`
 
