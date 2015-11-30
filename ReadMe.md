@@ -1,11 +1,3 @@
-| Tables        | Are           | Cool  |
-|---------------|---------------|-------|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-
-
 #### GeneralDev - tiny module to handle some general devop tasks
 
 
@@ -14,14 +6,13 @@
 All of dev ops tasks can be boiled down to **3** main ones
 
 1. **Compilation**
-2. **Watch** and Do something on change - mostly do step 1
+2. **Watch** and do something on change - mostly **Compilation**
 3. **Delete**
-4. ??
-5. Profit 
+
 
 For different devop tasks its usually just changing the *way* the compilation happens - maybe its minification or `less` compilation.  Everything else usually stays the same. 
 
-Once we create it the next step involves running it in various directories, etc. 
+Also the other thing that *may* change is directory - based on if its source, distribution, etc. 
 
 This modules abtracts away the 3 tasks of compilation, watching and deletion. 
 
@@ -39,13 +30,18 @@ We define a config function - for our example we will try to create a less compi
 Config =
 	InitialExt:"less"
 	FinalExtention:"css"
-	DirToLook:process.cwd! # Provides path of current file
-	DirToSave:process.cwd! # Provides path of current file
+	DirToLook:process.cwd! # Provides path of current Directory
+	DirToSave:process.cwd! # Provides path of current Directory
 	Compile:(FileName) ->
 
- # The compile function gets the fileName for each of your files.
+		# The compile function gets the fileName for each of your files.
+		
+		# ----------------------------------------------------------
+		# POPULATE ME !
+		# The next snippet populates this part for a less compiler
+		# ----------------------------------------------------------
 
- # The next snippet populates this part for a less compiler
+		return
 
 ```
 
@@ -104,21 +100,28 @@ The custom build function accepts three boolean arguments - each specifing the t
 
 
 
-In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()`
+In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()` - *if* run without any arguments.
 
-*if* run without any arguments. 
+
 
 ```AutoBuild()```
+The command below will create watches - but **will not** do an initial compilation or delete any files after compilation. The situation I use this for is I want to make some small changes in a large source directory and and then move those files to a distribution directory.
+```AutoBuild(false,true,false)```
 
+Just compile all files. The situation I would use this combination would be when I want to recompile all my sources to distribution but am not doing any developement myself.
 
+```AutoBuild(true,false,false)```
 
+This is an interesting combination - you may think its not useful - but I use it a lot when I need clean up my source directory after experimenting around. 
 
+```AutoBuild(false,false,true)```
 
+As you can see the point is to create a **general** purpose build script, rather than being too specific about one thing. 
 
 ### Config Object
 
 | Keys           | Type     | Description                                                                    |
-| ---            | ---      | ---                                                                            |
+|----------------|----------|--------------------------------------------------------------------------------|
 | InitialExt     | String   | This is the expected extension of the source file - for `less` that would be "less". For `coffeescript` that would be "coffee"|
 | FinalExtention | String   | What the extension of the the final file should be - css,js,etc               |
 | DirToLook      | String   | Specify the Directory where the source Files are located in                   |
