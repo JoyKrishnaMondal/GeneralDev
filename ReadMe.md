@@ -1,3 +1,9 @@
+| Tables        | Are           | Cool  |
+|---------------|---------------|-------|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 #### GeneralDev - tiny module to handle some general devop tasks
 
 
@@ -85,11 +91,7 @@ module.exports = AutoBuild
 ### How Everything works 
 
 `SetConfig` accepts the `Config` Object and outputs a your customized build function. 
-| Tables        | Are           | Cool  |
-|---------------|---------------|-------|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+
 The custom build function accepts three boolean arguments - each specifing the three important task mentioned above
 
 |Argument Position| Type |Default | Task | 
