@@ -49,9 +49,9 @@ Config =
 
 fs = require "fs"
 
-delimit = require "path" | (.sep)
+delimit = require "path" |> (.sep)
 
-{SetConfig,PrintSucess,PrintFailure,CreatePath} = require "GeneralDev"
+{SetConfig,PrintSucess,PrintFailure} = require "GeneralDev"
 
 Config =
 	InitialExt:"less"
@@ -65,28 +65,34 @@ Config =
 		error,data <-! fs.readFile ReadFilePath,'utf8'
 
 		if error 
+			PrintFailure!
 			throw error
 
 		(error, output) <-! less.render data
 
 		if error
+			PrintFailure!
 			throw error
 
-		WriteFilePath = CreatePath FileName,Config.FinalExtention
 
-		ReadFilePath = Config.DirToSave + delimit + FileName + + "." + Config.FinalExtention
+		WriteFilePath = Config.DirToSave + delimit + FileName + + "." + Config.FinalExtention
 
 		error <-! fs.writeFile WriteFilePath,output.css
 
 		if error
+			PrintFailure!
 			throw error
+
+		PrintSucess!
 
 AutoBuild = SetConfig Config
 
 module.exports = AutoBuild
 
 ```
+`PrintFailure` and `PrintSucess` are helper functions - its adviable to write your own descriptive error functions. Also use my other other module `GetRidOfError` to simplify error handling. The Output from my helper function looks something like this :
 
+![Error Message]()
 
 ### How Everything works 
 
@@ -100,11 +106,7 @@ The custom build function accepts three boolean arguments - each specifing the t
 |2<sup>nd<sup>| Boolean | True  | If you would want to setup an watch and compile for each of the files |
 |3<sup>rd<sup>| Boolean | False | If you want to do an cleanup when the buildscript exits |
 
-
-
 In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()` - *if* run without any arguments.
-
-
 
 ```livescript
 AutoBuild()
@@ -115,24 +117,17 @@ The command below will create watches - but **will not** do an initial compilati
 ```livescript
 AutoBuild(false,true,false) # Run without any arguments
 ```
-
-
-
 Just compile all files. The situation I would use this combination would be when I want to recompile all my sources to distribution but am not doing any developement myself.
 
 ```livescript
 AutoBuild(true,false,false) # 1,0,0 - Only does initial compilation
 ```
 
-
-
 This is an interesting combination - you may think its not useful - but I use it a lot when I need clean up my source directory after experimenting around. 
 
 ```livescript
 AutoBuild(false,false,true) # 0,0,1 - Clean Up directory 
 ```
-
-
 
 As you can see the point is to create a **general** purpose build script, rather than being too specific about one thing. 
 

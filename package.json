@@ -1,0 +1,32 @@
+{
+  "name": "GeneralDev",
+  "version": "0.0.1",
+  "description": "tiny module to handle some general devop tasks",
+  "author": "joykrishnamondal <joykrishnamondal@gmail.com>",
+  "main": "GeneralDev.js",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/JoyKrishnaMondal/GeneralDev.git"
+},
+  "keywords": [
+  "livescript",
+  "Async",
+  "DevOps",
+  "Developers Operations",
+  "General Purpose",
+  "Watch",
+  "CleanUp"
+],
+  "dependencies": {
+    "prelude-ls": "*",
+    "GetRidOfError":"https://github.com/JoyKrishnaMondal/GetRidOfError.git",
+    "SeparateFilesAndDirectories":"https://github.com/JoyKrishnaMondal/SeparateFilesAndDirectories",
+    "chokidar":"*",
+    "cli-color":"*"
+  },
+  "devDependencies": {
+    "simple-livescript-watch": "*"
+  },
+  "license": "MIT"
+}
+  
