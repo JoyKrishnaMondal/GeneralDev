@@ -90,7 +90,7 @@ AutoBuild = SetConfig Config
 module.exports = AutoBuild
 
 ```
-`PrintFailure` and `PrintSucess` are helper functions - its adviable to write your own descriptive error functions. Also use my other other module `GetRidOfError` to simplify error handling. The Output from my helper function looks something like this :
+`PrintFailure` and `PrintSucess` are helper functions - its advisable to write your own descriptive error functions. Also use my other module `GetRidOfError` to simplify error handling. The Output from my helper function looks something like this :
 
 ![Error Message](http://i.imgur.com/0QwSjlQ.png)
 
