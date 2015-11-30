@@ -60,7 +60,7 @@ DeleteOnExit = (FileName) ->
 
 	FileString = FileName + "." + Config.FinalExtention
 
-	(err) <-! fsa.unlink FileString
+	<-! fs.unlink FileString
 
 	if err
 		throw err
@@ -146,7 +146,9 @@ Public.PrintSucess = (FileName) ->
 	console.error FileNameC "#{FileName}." + Config.InitialExt + SuccessC " Compiled."
 
 Public.PrintFailure = (FileName) ->
+
 	{InitialExt} = Config
+
 	console.error (ErrorC InitialExt + " Parse failure at ") + FileNameC FileName + "." + InitialExt
 
 module.exports = Public

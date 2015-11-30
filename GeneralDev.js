@@ -44,7 +44,7 @@
     return process.on("SIGINT", function(){
       var FileString;
       FileString = FileName + "." + Config.FinalExtention;
-      fsa.unlink(FileString, function(err){
+      fs.unlink(FileString, function(){
         if (err) {
           throw err;
         }
