@@ -96,7 +96,7 @@ module.exports = AutoBuild
 
 ### How Everything works 
 
-`SetConfig` accepts the `Config` Object and outputs a your customized build function. 
+`SetConfig` accepts the `Config` Object and outputs your customized build function. 
 
 The custom build function accepts three boolean arguments - each specifing the three important task mentioned above
 
@@ -106,30 +106,35 @@ The custom build function accepts three boolean arguments - each specifing the t
 |2<sup>nd<sup>| Boolean | True  | If you would want to setup an watch and compile for each of the files |
 |3<sup>rd<sup>| Boolean | False | If you want to do an cleanup when the buildscript exits |
 
-In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()` - *if* run without any arguments.
+In the above example - we output a build function called `AutoBuild`. 
 
 ```livescript
-AutoBuild()
+AutoBuild() # Run without any arguments
 ```
 
-The command below will create watches - but **will not** do an initial compilation or delete any files after compilation. The situation I use this for is I want to make some small changes in a large source directory and and then move those files to a distribution directory.
+When called *without* any arguments it assumes defaults and sets up a `less` compilation process which watches and delete in the directory from where its being run - due to using `process.cwd()`.
 
 ```livescript
-AutoBuild(false,true,false) # Run without any arguments
+AutoBuild(false,true,false)
 ```
-Just compile all files. The situation I would use this combination would be when I want to recompile all my sources to distribution but am not doing any developement myself.
+
+The command above will create watches - but **will not** do an initial compilation or delete any files after compilation. The situation I use this for is I want to make some small changes in a large source directory and then move those files to a distribution directory.
 
 ```livescript
 AutoBuild(true,false,false) # 1,0,0 - Only does initial compilation
 ```
 
-This is an interesting combination - you may think its not useful - but I use it a lot when I need clean up my source directory after experimenting around. 
+
+Just compile all files. The situation I would use this combination would be when I want to recompile all my sources to distribution but am not doing any developement myself.
+
 
 ```livescript
 AutoBuild(false,false,true) # 0,0,1 - Clean Up directory 
 ```
 
-As you can see the point is to create a **general** purpose build script, rather than being too specific about one thing. 
+The Final example is an interesting combination - you may think its not useful - but I use it a lot when I need clean up my source directory after experimenting around with my source files.
+
+As you can see the point is to create a **general** purpose method to create very *specific* build processs.
 
 ### Config Object
 
