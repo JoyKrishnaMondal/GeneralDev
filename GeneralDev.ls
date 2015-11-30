@@ -6,7 +6,7 @@ _ = require "prelude-ls"
 
 fs =  require "fs" |> require "GetRidOfError"
 
-{SeperateFilesAndDir} = require "SeparateFilesAndDirectories"
+{SeparateFilesAndDir} = require "SeparateFilesAndDirectories"
 
 chokidar = require "chokidar"
 
@@ -106,7 +106,7 @@ BuildScript = (InitialCompile = true, SetUpWatch = true ,DeleteCompiledFileOnExi
 
 	WorkFn = ({Files}) -> DoWork InitialCompile,SetUpWatch,DeleteCompiledFileOnExit,Files
 
-	SeperateFilesAndDir Config.DirToLook,WorkFn
+	SeparateFilesAndDir Config.DirToLook,WorkFn
 
 SetConfig = (UserConfig) -> 
 
@@ -143,6 +143,7 @@ Public.SetConfig = SetConfig
 # Helper Functions and variables
 
 Public.PrintSucess = (FileName) ->
+
 	console.error FileNameC "#{FileName}." + Config.InitialExt + SuccessC " Compiled."
 
 Public.PrintFailure = (FileName) ->
