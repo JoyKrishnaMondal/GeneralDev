@@ -94,17 +94,17 @@ The custom build function accepts three boolean arguments - each specifing the t
 
 |Argument| Type |Default | Task | 
 |----------------|-------------------|-------------------|----|
-|1st| Boolean | True  | Specifies if all the source files get an intial compilation |
-|2nd| Boolean | True  | If you would want to setup an watch and compile for each of the files |
-|3rd| Boolean | False | If you want to do an cleanup when the buildscript exits |
+|1<sup>st<sup>| Boolean | True  | Specifies if all the source files get an intial compilation |
+|2<sup>nd<sup>| Boolean | True  | If you would want to setup an watch and compile for each of the files |
+|3<sup>rd<sup>| Boolean | False | If you want to do an cleanup when the buildscript exits |
 
 
 
 In the above example - we output a build function called `AutoBuild` that when called speficially sets up a `less` compilation with watch and delete in the directory from where its being run - due to using `process.cwd()` - *if* run without any arguments.
 
 
-
-```AutoBuild()```
+hello 
+<!-- ```AutoBuild()```
 The command below will create watches - but **will not** do an initial compilation or delete any files after compilation. The situation I use this for is I want to make some small changes in a large source directory and and then move those files to a distribution directory.
 ```AutoBuild(false,true,false)```
 
@@ -133,4 +133,4 @@ As you can see the point is to create a **general** purpose build script, rather
 
 I will not be maintaining this module unless people inform me they are using it. 
 
-If you find any error or problems please raise it as an issue. 
+If you find any error or problems please raise it as an issue.  -->
