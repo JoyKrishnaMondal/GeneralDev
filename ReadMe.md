@@ -20,6 +20,11 @@ The way it works is you define a **compile** function - it could be async/sync -
 
 
 So if there is some new language/compiler you want to try out. You could quickly write a compile function based on the API of the language/compiler - and then plug it into this module - which will output a *custom* function that accepts three flag arguments - for the three tasks.
+##### Installation
+
+```
+npm install joykrishnamondal/GeneralDev
+```
 
 ##### How to Use 
 
