@@ -126,10 +126,14 @@ DoWork = (CompileFlag,WatchFlag,DeleteFlag,Files)->
 
 	return
 
-BuildScript = (InitialCompile = true, SetUpWatch = true ,DeleteCompiledFileOnExit = false) -> 
-
+BuildScript = (InitialCompile = true, SetUpWatch = true ,DeleteCompiledFileOnExit = false, DirToSave = process.cwd!, DirToLook = process.cwd!) -> 
+	
 	WorkFn = ({Files}) -> DoWork InitialCompile,SetUpWatch,DeleteCompiledFileOnExit,Files
 
+	Config.DirToLook = DirToLook
+
+	Config.DirToSave = DirToSave
+	
 	SeparateFilesAndDir Config.DirToLook,WorkFn
 
 SetConfig = (UserConfig) -> 

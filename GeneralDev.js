@@ -93,16 +93,20 @@
       }
     }
   };
-  BuildScript = function(InitialCompile, SetUpWatch, DeleteCompiledFileOnExit){
+  BuildScript = function(InitialCompile, SetUpWatch, DeleteCompiledFileOnExit, DirToSave, DirToLook){
     var WorkFn;
     InitialCompile == null && (InitialCompile = true);
     SetUpWatch == null && (SetUpWatch = true);
     DeleteCompiledFileOnExit == null && (DeleteCompiledFileOnExit = false);
+    DirToSave == null && (DirToSave = process.cwd());
+    DirToLook == null && (DirToLook = process.cwd());
     WorkFn = function(arg$){
       var Files;
       Files = arg$.Files;
       return DoWork(InitialCompile, SetUpWatch, DeleteCompiledFileOnExit, Files);
     };
+    Config.DirToLook = DirToLook;
+    Config.DirToSave = DirToSave;
     return SeparateFilesAndDir(Config.DirToLook, WorkFn);
   };
   SetConfig = function(UserConfig){
