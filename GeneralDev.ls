@@ -4,7 +4,7 @@ delimit = path.sep
 
 _ = require "prelude-ls"
 
-fs =  require "fs" |> require "GetRidOfError"
+fs =  (require "fs") |> (require "GetRidOfError")
 
 {SeparateFilesAndDir} = require "SeparateFilesAndDirectories"
 
@@ -51,27 +51,50 @@ Watch = (FileName) ->
 	Config.Compile FileName
 
 Struct = {}
+
 Struct.Count = 0
+
+DeleteFn = (Ob) ->
+
+	if Ob.Deleted is true
+		return
+	else
+		Ob.Deleted = true
+
+	Struct.Count += 1
+
+	console.error ((SuccessC "Successfully removed ") + (FileNameC Ob.Name))
+	# if Struct.Count is Config.Count
+	# 	process.pause()
+
+		# setTimeout (-> process.exit!),2000
+	
+
+	return
+
+KeepName = (Ob) -> -> DeleteFn Ob
+
+CleanFn = (FileString) -> 
+	
+	Ob = {}
+
+	Ob.Name = FileString
+
+	Ob.Deleted = false
+
+	-> fs.unlink Ob.Name, (KeepName Ob)
 
 DeleteOnExit = (FileName) ->
 
-
-	<-! process.on "SIGINT"
-
 	FileString = FileName + "." + Config.FinalExtention
-
-	<-! fs.unlink FileString
-
-	if err
-		throw err
 	
-	Struct.Count = Struct.Count  + 1
+	OnExitFn = CleanFn FileString
 
-	console.error SuccessC "Successfully removed " + FileNameC FileString
+	process.on "exit",OnExitFn
 
-	if Struct.Count is Config.Count
+	process.on "SIGINT",OnExitFn
 
-		process.exit! 
+
 
 DoWork = (CompileFlag,WatchFlag,DeleteFlag,Files)->
 
@@ -82,6 +105,7 @@ DoWork = (CompileFlag,WatchFlag,DeleteFlag,Files)->
 	while Go
 
 		{value,done} = Gen.next!
+
 
 		if not done
 
